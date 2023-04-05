@@ -68,3 +68,15 @@ if __name__ == "__main__":
             music_dir = ''
             songs = os.listdir(music_dir)    
             os.startfile(os.path.join(music_dir, songs[0]))
+        
+        # format datetime string
+        elif 'the time' in query:
+            strTime = datetime.datetime.now().strftime('%H-%M-%S')
+            speak(f"The time is{strTime}")
+        
+        elif 'open code' in query:
+            codePath = "C:\\Users\\DELL\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\Visual Studio Code.lnk"
+            os.startfile(codePath)
+
+        
+
