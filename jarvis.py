@@ -3,6 +3,7 @@ import datetime
 import speech_recognition as sr
 import wikipedia
 import webbrowser
+import os
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voices', voices[1].id)
@@ -61,4 +62,9 @@ if __name__ == "__main__":
 
         elif 'open stackoverflow' in query:
             webbrowser.open('http://www.stackoverflow.com')
-    
+        
+        # crete a random function to generate song index
+        elif 'play music' in query:
+            music_dir = ''
+            songs = os.listdir(music_dir)    
+            os.startfile(os.path.join(music_dir, songs[0]))
