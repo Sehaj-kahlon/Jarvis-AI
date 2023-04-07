@@ -39,6 +39,7 @@ def takeCommand():
         print(f"User said: {query}\n")
     except Exception as e:
         print("Sorry, I did'nt get that. Please try saying again")
+        speak("Sorry, I did'nt get that. Please try saying again")
         return "None"
     return query
 def sendEmail(to , content):
@@ -95,7 +96,9 @@ if __name__ == "__main__":
                 speak("Email has been sent!")
             except Exception as e:
                 print(e)
-                speak("Sorry, I was'nt able to sent the email. Please try again")
-            
+                speak("Sorry, I was'nt able to sent the email. Please try again")      
+
+        elif 'quit' in query:
+            exit()   
         
 
