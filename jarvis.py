@@ -4,6 +4,7 @@ import speech_recognition as sr
 import wikipedia
 import webbrowser
 import os
+import smtplib
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voices', voices[1].id)
@@ -40,6 +41,13 @@ def takeCommand():
         print("Sorry, I did'nt get that. Please try saying again")
         return "None"
     return query
+def sendEmail(to , content):
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.ehlo()
+    server.starttls()
+    server.login('youremail@gmail.com', 'your-password')
+    server.send('youremail@gmail.com', to, content)
+    server.close()
 
 
 if __name__ == "__main__":
@@ -77,6 +85,17 @@ if __name__ == "__main__":
         elif 'open code' in query:
             codePath = "C:\\Users\\DELL\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\Visual Studio Code.lnk"
             os.startfile(codePath)
-
+        
+        elif 'send email' in query:
+            try:
+                speak("What's the message?")
+                content = takeCommand()
+                to = "sehajkahlon437@gmail.com"
+                sendEmail(to , content)
+                speak("Email has been sent!")
+            except Exception as e:
+                print(e)
+                speak("Sorry, I was'nt able to sent the email. Please try again")
+            
         
 
